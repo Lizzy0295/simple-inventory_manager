@@ -1,94 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Inventory Manager</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Inventory Manager</h1>
-
-    <div>
-        <h2>Register</h2>
-        <input type="text" id="reg_username" placeholder="Username">
-        <input type="password" id="reg_password" placeholder="Password">
-        <button onclick="register()">Register</button>
-    </div>
-
-    <div>
-        <h2>Login</h2>
-        <input type="text" id="login_username" placeholder="Username">
-        <input type="password" id="login_password" placeholder="Password">
-        <button onclick="login()">Login</button>
-    </div>
-
-    <div>
-        <h2>Add Item</h2>
-        <input type="text" id="item_name" placeholder="Item Name">
-        <input type="number" id="item_quantity" placeholder="Quantity">
-        <button onclick="addItem()">Add Item</button>
-    </div>
-
-    <div>
-        <h2>Inventory List</h2>
-        <ul id="inventory_list"></ul>
-    </div>
-
-    <script>
-        function register() {
-            const username = document.getElementById('reg_username').value;
-            const password = document.getElementById('reg_password').value;
-            fetch('/api/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({username, password})
-            }).then(response => response.json()).then(data => alert(data.message));
-        }
-
-        function login() {
-            const username = document.getElementById('login_username').value;
-            const password = document.getElementById('login_password').value;
-            fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({username, password})
-            }).then(response => response.json()).then(data => alert(data.message));
-        }
-
-        function addItem() {
-            const name = document.getElementById('item_name').value;
-            const quantity = document.getElementById('item_quantity').value;
-            fetch('/api/items', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({name, quantity})
-            }).then(response => response.json()).then(data => {
-                alert(data.message);
-                loadItems();
-            });
-        }
-
-        function loadItems() {
-            fetch('/api/items')
-                .then(response => response.json())
-                .then(items => {
-                    const list = document.getElementById('inventory_list');
-                    list.innerHTML = '';
-                    items.forEach(item => {
-                        const li = document.createElement('li');
-                        li.textContent = `${item.name} - ${item.quantity}`;
-                        list.appendChild(li);
-                    });
-                });
-        }
-
-        window.onload = loadItems;
-    </script>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="home" class="cover">
+        <div class="overlay">
+            <h1>Simple Inventory Manager</h1>
+            <p>Manage your inventory efficiently and effortlessly.</p>
+            <a href="/app" class="button">Go to Application</a>
+        </div>
+    </section>
+    <section id="about">
+        <h2>About</h2>
+        <p>Information about the project and its features.</p>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Contact details and form.</p>
+    </section>
 </body>
 </html>
 
