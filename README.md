@@ -63,3 +63,13 @@ cd simple-inventory_manager
 Run the tests:
 python -m unittest discover -s tests
 
+Contributing
+Contributions are welcome! If you would like to contribute to this project, please follow these steps:
+
+Fork the repository.
+Create a new branch (git checkout -b feature/YourFeature).
+Make your changes.
+Commit your changes (git commit -m 'Add YourFeature').
+Push to the branch (git push origin feature/YourFeature).
+Create a pull request.
+
